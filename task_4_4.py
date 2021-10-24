@@ -1,3 +1,5 @@
+
+  
 spisok = [1, 2, 3, 4, 5]
 spisok2 = []
 for i in range(1, len(spisok)):
@@ -12,4 +14,3 @@ while n < len(spisok):
     n += 1
 spisok3.append(spisok[0])
 print(spisok3)
-
