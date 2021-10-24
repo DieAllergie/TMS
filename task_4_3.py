@@ -4,7 +4,6 @@ new_key = []
 for key in dict1:
     key = key + str(len(key))
     new_key.append(key)
-    print(key)
 dict2 = dict(zip(new_key, list(dict1.values())))
 print(dict2)
 
