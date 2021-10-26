@@ -12,4 +12,3 @@ for i in dictionary:
         tdelta = datetime.timedelta(days=0, seconds=tdelta.seconds, microseconds=tdelta.microseconds)
     if datetime.datetime.strptime(str(tdelta), '%H:%M:%S') > datetime.datetime.strptime('7:20:00', '%H:%M:%S'):
         print(i)
-
