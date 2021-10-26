@@ -7,7 +7,7 @@ dictionary = [{'train_number': 1001, 'st_out': 'Minsk', 't_out': '10:30:00', 'st
               ]
 
 for i in dictionary:
-    tdelta = datetime.datetime.strptime(str(i['t_in']), '%H:%M:%S') - datetime.datetime.strptime(str(i['t_out']), '%H:%M:%S')
+    tdelta = datetime.datetime.strptime(i['t_in'], '%H:%M:%S') - datetime.datetime.strptime(i['t_out'], '%H:%M:%S')
     if tdelta.days < 0:
         tdelta = datetime.timedelta(days=0, seconds=tdelta.seconds, microseconds=tdelta.microseconds)
     if datetime.datetime.strptime(str(tdelta), '%H:%M:%S') > datetime.datetime.strptime('7:20:00', '%H:%M:%S'):
