@@ -11,7 +11,7 @@ def sin1(x: float, eps: float) -> float:
 
 def main():
     eps = [0.00001, 0.01, 0.0001, 0.001, 0.1, 0.00000001]
-    x = 0.6
+    x = 3.14/2
     for item in eps:
         print(sin1(x, item))
 
