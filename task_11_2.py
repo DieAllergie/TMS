@@ -57,6 +57,48 @@ class Car:
             return self.__speed
 
 
+class SportCar(Car):
+    def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0):
+        super().__init__(brand, model, year_prod, speed)
+
+    def speed_up(self):
+        self._Car__speed += 10
+        print('Speed up on 10 km/h')
+        return self._Car__speed
+
+    def speed_down(self):
+        self._Car__speed -= 10
+        print('Speed down on 10 km/h')
+        return self._Car__speed
+
+
+class Truсk(Car):
+    def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0):
+        super().__init__(brand, model, year_prod)
+        if speed > 40:
+            print('The truck cannot go faster 40 km/h. Speed is set 40 km/h.')
+            self._Car__speed = 40
+        elif speed < -40:
+            print('The truck cannot go faster -40 km/h. Speed is set -40 km/h.')
+            self._Car__speed = -40
+        else:
+            self._Car__speed = speed
+
+    def speed_up(self):
+
+        if self._Car__speed + 5 > 40:
+            print('The truck cannot go faster 40 km/h. Speed is set 40 km/h.')
+            self._Car__speed = 40
+        else:
+            self._Car__speed += 5
+
+    def speed_down(self):
+        if self._Car__speed - 5 < -40:
+            print('The truck cannot go faster -40 km/h. Speed is set -40 km/h.')
+            self._Car__speed = -40
+        else:
+            self._Car__speed -= 5
+
 car1 = Car('Audi', 'A6', 2011, 100)
 car1.speed_up()
 car1.speed_now()
@@ -64,3 +106,12 @@ car1.speed_reversal()
 car1.speed_now()
 car1.speed_stop()
 car1.speed_reversal()
+car2 = SportCar('Ferrari', '488 Pista', 2019, 150)
+car2.speed_up()
+car2.speed_down()
+car2.speed_down()
+car2.speed_now()
+car3 = Truсk('Volvo', 'Euro 5', 2020, 36)
+car3.speed_now()
+car3.speed_up()
+car3.speed_now()
