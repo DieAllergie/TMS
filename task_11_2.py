@@ -9,38 +9,38 @@ class Car:
     def set_brand(self, brand: str):
         self.__brand = brand
 
-    def get_brand(self):
+    def get_brand(self) -> str:
         return self.__brand
 
     def set_model(self, model: str):
         self.__model = model
 
-    def get_model(self):
+    def get_model(self) -> str:
         return self.__model
 
     def set_year_prod(self, year_prod: int):
         self.__year_prod = year_prod
 
-    def get_year_prod(self):
+    def get_year_prod(self) -> int:
         return self.__year_prod
 
     def set_speed(self, speed: int):
         self.__speed = speed
 
-    def get_speed(self):
+    def get_speed(self) -> int:
         return self.__speed
 
-    def speed_up(self):
+    def speed_up(self) -> int:
         self.__speed += 5
         print('Speed up on 5 km/h')
         return self.__speed
 
-    def speed_down(self):
+    def speed_down(self) -> int:
         self.__speed -= 5
         print('Speed down on 5 km/h')
         return self.__speed
 
-    def speed_stop(self):
+    def speed_stop(self) -> int:
         self.__speed = 0
         print('Car STOP. Speed equals 0 km/h')
         return self.__speed
@@ -48,7 +48,7 @@ class Car:
     def speed_now(self):
         return print(f'Speed {self.__brand} {self.__model} равна {self.__speed} km/h')
 
-    def speed_reversal(self):
+    def speed_reversal(self) -> int:
         if self.__speed == 0:
             print('The car don\'t turn around because speed 0 km/h. Change please speed.')
         else:
@@ -61,12 +61,12 @@ class SportCar(Car):
     def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0):
         super().__init__(brand, model, year_prod, speed)
 
-    def speed_up(self):
+    def speed_up(self) -> int:
         self._Car__speed += 10
         print('Speed up on 10 km/h')
         return self._Car__speed
 
-    def speed_down(self):
+    def speed_down(self) -> int:
         self._Car__speed -= 10
         print('Speed down on 10 km/h')
         return self._Car__speed
@@ -84,20 +84,21 @@ class Truck(Car):
         else:
             self._Car__speed = speed
 
-    def speed_up(self):
-
+    def speed_up(self) -> int:
         if self._Car__speed + 5 > 40:
             print('The truck cannot go faster 40 km/h. Speed is set 40 km/h.')
             self._Car__speed = 40
         else:
             self._Car__speed += 5
+        return self._Car__speed
 
-    def speed_down(self):
+    def speed_down(self) -> int:
         if self._Car__speed - 5 < -40:
             print('The truck cannot go faster -40 km/h. Speed is set -40 km/h.')
             self._Car__speed = -40
         else:
             self._Car__speed -= 5
+        return self._Car__speed
 
 
 class ElectroCar(Car):
@@ -120,25 +121,27 @@ class ElectroCar(Car):
         else:
             self._Car__speed = speed
 
-    def speed_up(self):
+    def speed_up(self) -> int:
         if self.__energy < 50:
             print('Low battery charge. Speed can not be more 40 km/h. Speed is set 40 km/h.')
             self._Car__speed = 40
         else:
             self._Car__speed += 5
+        return self._Car__speed
 
-    def speed_down(self):
+    def speed_down(self) -> int:
         if self.__energy < 50:
             print('Low battery charge. Speed can not be less -40 km/h. Speed is set -40 km/h.')
             self._Car__speed = -40
         else:
             self._Car__speed -= 5
+        return self._Car__speed
 
-    def get_level_charge(self):
+    def get_level_charge(self) -> int:
         print(f'Battery charge is {self.__energy}%.')
         return self.__energy
 
-    def set_level_charge(self, energy: int = 100):
+    def set_level_charge(self, energy: int = 100) -> int:
         if energy > 100:
             print('Battery charge can not be more 100%. Battery charge is set 100%.')
             self.__energy = 100
@@ -148,31 +151,33 @@ class ElectroCar(Car):
         else:
             self.__energy = energy
         print(f'Battery charge is set {self.__energy}%.')
+        return self.__energy
 
 
-car1 = Car('Audi', 'A6', 2011, 100)
-car1.speed_up()
-car1.speed_now()
-car1.speed_reversal()
-car1.speed_now()
-car1.speed_stop()
-car1.speed_reversal()
+def main():
+    car1 = Car('Audi', 'A6', 2011, 100)
+    car1.speed_up()
+    car1.speed_now()
+    car1.speed_reversal()
+    car1.speed_now()
+    car1.speed_stop()
+    car1.speed_reversal()
+    car2 = SportCar('Ferrari', '488 Pista', 2019, 150)
+    car2.speed_up()
+    car2.speed_down()
+    car2.speed_down()
+    car2.speed_now()
+    car3 = Truck('Volvo', 'Euro 5', 2020, 36)
+    car3.speed_now()
+    car3.speed_up()
+    car3.speed_now()
+    car4 = ElectroCar('Tesla', 'Model S', 2021, 100, 40)
+    car4.speed_now()
+    car4.speed_up()
+    car4.speed_now()
+    car4.get_level_charge()
+    car4.set_level_charge(99)
 
-car2 = SportCar('Ferrari', '488 Pista', 2019, 150)
-car2.speed_up()
-car2.speed_down()
-car2.speed_down()
-car2.speed_now()
 
-car3 = Truck('Volvo', 'Euro 5', 2020, 36)
-car3.speed_now()
-car3.speed_up()
-car3.speed_now()
-
-car4 = ElectroCar('Tesla', 'Model S', 2021, 100, 40)
-car4.speed_now()
-car4.speed_up()
-car4.speed_now()
-car4.get_level_charge()
-car4.set_level_charge(99)
-
+if __name__ == '__main__':
+    main()
