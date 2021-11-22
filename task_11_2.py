@@ -72,7 +72,7 @@ class SportCar(Car):
         return self._Car__speed
 
 
-class Truсk(Car):
+class Truck(Car):
     def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0):
         super().__init__(brand, model, year_prod)
         if speed > 40:
@@ -99,6 +99,57 @@ class Truсk(Car):
         else:
             self._Car__speed -= 5
 
+
+class ElectroCar(Car):
+    def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0, energy: int = 100):
+        super().__init__(brand, model, year_prod)
+        if energy > 100:
+            print('Battery charge can not be more 100%. Battery charge is set 100%.')
+            self.__energy = 100
+        elif energy < 0:
+            print('Battery charge not be less 0%. Battery charge is set 0%.')
+            self.__energy = 0
+        else:
+            self.__energy = energy
+        if self.__energy < 50 and speed > 40:
+            print('Low battery charge. Speed can not be more 40 km/h. Speed is set 40 km/h.')
+            self._Car__speed = 40
+        elif self.__energy < 50 and speed < -40:
+            print('Low battery charge. Speed can not be less -40 km/h. Speed is set -40 km/h.')
+            self._Car__speed = -40
+        else:
+            self._Car__speed = speed
+
+    def speed_up(self):
+        if self.__energy < 50:
+            print('Low battery charge. Speed can not be more 40 km/h. Speed is set 40 km/h.')
+            self._Car__speed = 40
+        else:
+            self._Car__speed += 5
+
+    def speed_down(self):
+        if self.__energy < 50:
+            print('Low battery charge. Speed can not be less -40 km/h. Speed is set -40 km/h.')
+            self._Car__speed = -40
+        else:
+            self._Car__speed -= 5
+
+    def get_level_charge(self):
+        print(f'Battery charge is {self.__energy}%.')
+        return self.__energy
+
+    def set_level_charge(self, energy: int = 100):
+        if energy > 100:
+            print('Battery charge can not be more 100%. Battery charge is set 100%.')
+            self.__energy = 100
+        elif energy < 0:
+            print('Battery charge can not be less 0%. Battery charge is set 0%.')
+            self.__energy = 0
+        else:
+            self.__energy = energy
+        print(f'Battery charge is set {self.__energy}%.')
+
+
 car1 = Car('Audi', 'A6', 2011, 100)
 car1.speed_up()
 car1.speed_now()
@@ -106,12 +157,22 @@ car1.speed_reversal()
 car1.speed_now()
 car1.speed_stop()
 car1.speed_reversal()
+
 car2 = SportCar('Ferrari', '488 Pista', 2019, 150)
 car2.speed_up()
 car2.speed_down()
 car2.speed_down()
 car2.speed_now()
-car3 = Truсk('Volvo', 'Euro 5', 2020, 36)
+
+car3 = Truck('Volvo', 'Euro 5', 2020, 36)
 car3.speed_now()
 car3.speed_up()
 car3.speed_now()
+
+car4 = ElectroCar('Tesla', 'Model S', 2021, 100, 40)
+car4.speed_now()
+car4.speed_up()
+car4.speed_now()
+car4.get_level_charge()
+car4.set_level_charge(99)
+
