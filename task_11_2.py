@@ -104,7 +104,11 @@ class Truck(Car):
 class ElectroCar(Car):
     def __init__(self, brand: str, model: str, year_prod: int, speed: int = 0, energy: int = 100):
         super().__init__(brand, model, year_prod)
-        if energy > 100:
+        if energy == 0:
+            self.__energy = 0
+            print('Low battery charge. Speed is set 0 km/h.')
+            self._Car__speed = 0
+        elif energy > 100:
             print('Battery charge can not be more 100%. Battery charge is set 100%.')
             self.__energy = 100
         elif energy < 0:
@@ -112,6 +116,7 @@ class ElectroCar(Car):
             self.__energy = 0
         else:
             self.__energy = energy
+
         if self.__energy < 50 and speed > 40:
             print('Low battery charge. Speed can not be more 40 km/h. Speed is set 40 km/h.')
             self._Car__speed = 40
@@ -142,7 +147,11 @@ class ElectroCar(Car):
         return self.__energy
 
     def set_level_charge(self, energy: int = 100) -> int:
-        if energy > 100:
+        if energy == 0:
+            self.__energy = 0
+            print('Low battery charge. Speed is set 0 km/h.')
+            self._Car__speed = 0
+        elif energy > 100:
             print('Battery charge can not be more 100%. Battery charge is set 100%.')
             self.__energy = 100
         elif energy < 0:
@@ -176,7 +185,7 @@ def main():
     car4.speed_up()
     car4.speed_now()
     car4.get_level_charge()
-    car4.set_level_charge(99)
+    car4.set_level_charge(0)
 
 
 if __name__ == '__main__':
