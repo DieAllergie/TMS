@@ -48,11 +48,19 @@ class Triangle(Figure):
         return s
 
 
-point1 = Point(0, 0)
-point2 = Point(0, 1)
-point3 = Point(1, 0)
-circle = Circle(point1, 5)
-triangle = Triangle(point1, point2, point3)
-print(circle.area())
-print(triangle.area())
+class Square(Figure):
+    def __init__(self, point1: Point, point2: Point):
+        """
+        Считаем что стороны прямоугольника паралельны осям координат
+        """
+        self.x1 = point1.x
+        self.y1 = point1.y
+        self.x2 = point2.x
+        self.y2 = point2.y
+
+    def perimeter(self):
+        return (abs(self.x2 - self.x1) + abs(self.y2 - self.y1)) * 2
+
+    def area(self):
+        return abs(self.x2 - self.x1) * abs(self.y2 - self.y1)
 
