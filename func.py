@@ -11,7 +11,11 @@ def func_mul(n: float, m: float) -> float:
 
 
 def func_div(n: float, m: float) -> float:
-    return n / m
+    try:
+        return n / m
+    except ZeroDivisionError as err:
+        print(f'm = 0 - {err}!!!')
+
 
 
 
