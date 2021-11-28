@@ -11,6 +11,7 @@ def main():
     print(triangle.area())
     point4 = cl.Point(5, 5)
     square = cl.Square(point1, point4)
+    print(square.x1)
     print(square.area())
     print(square.perimeter())
 
