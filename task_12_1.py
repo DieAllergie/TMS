@@ -9,11 +9,24 @@ class MyTime:
         while self.hours > 24:
             self.hours -= 24
 
-    def __init__(self, h=0, m=0, s=0, time_str='', *args):
-        if not args and not time_str and not h and not m and not s:
+        while self.seconds < 0:
+            self.seconds += 60
+            self.minutes -= 1
+        while self.minutes < 0:
+            self.minutes += 60
+            self.hours -= 1
+        while self.hours < 0:
+            self.hours += 24
+
+    def __init__(self, h=None, m=None, s=None, time_str=None, my_time=None):
+        if not my_time and not time_str and not h and not m and not s:
             self.hours = 0
             self.minutes = 0
             self.seconds = 0
+        elif type(my_time) == MyTime:
+            self.hours = my_time.hours
+            self.minutes = my_time.minutes
+            self.seconds = my_time.seconds
         elif time_str:
             ls = list(time_str.split(':'))
             self.hours = int(ls[0])
@@ -44,44 +57,103 @@ class MyTime:
 
         return show_time_str
 
-    def __eq__(self, other: str):
-        ls = list(other.split(':'))
-        other_hours = int(ls[0])
-        other_minutes = int(ls[1])
-        other_seconds = int(ls[2])
-        if self.hours == other_hours and self.minutes == other_minutes and self.seconds == other_seconds:
+    def __eq__(self, my_time) -> bool:
+        if self.hours == my_time.hours and self.minutes == my_time.minutes and self.seconds == my_time.seconds:
             print('Да времена одинаковые')
+            return True
         else:
             print('Нет времена разные')
+            return False
 
-    def __ne__(self, other):
-        ls = list(other.split(':'))
-        other_hours = int(ls[0])
-        other_minutes = int(ls[1])
-        other_seconds = int(ls[2])
-        if self.hours != other_hours or self.minutes != other_minutes or self.seconds != other_seconds:
+    def __ne__(self, my_time) -> bool:
+        if self.hours != my_time.hours or self.minutes != my_time.minutes or self.seconds != my_time.seconds:
             print('Да времена разные')
+            return True
         else:
             print('Нет времена одинаковые')
+            return False
+
+    def __ge__(self, my_time) -> bool:
+        if self.hours > my_time.hours or (self.hours == my_time.hours and self.minutes > my_time.minutes)\
+                or (self.hours == my_time.hours and self.minutes == my_time.minutes
+                    and self.seconds >= my_time.seconds):
+            print('Да время больше или равно')
+            return True
+        else:
+            print('Нет время не бильше или равно')
+            return False
+
+    def __le__(self, my_time) -> bool:
+        if self.hours < my_time.hours or (self.hours == my_time.hours and self.minutes < my_time.minutes)\
+                or (self.hours == my_time.hours and self.minutes == my_time.minutes
+                    and self.seconds <= my_time.seconds):
+            print('Да время меньше или равно')
+            return True
+        else:
+            print('Нет время не меньше или равно')
+            return False
+
+    def __lt__(self, my_time):
+        if self.hours < my_time.hours or (self.hours == my_time.hours and self.minutes < my_time.minutes)\
+                or (self.hours == my_time.hours and self.minutes == my_time.minutes
+                    and self.seconds < my_time.seconds):
+            print('Да время меньше')
+            return True
+        else:
+            print('Нет время не меньше')
+            return False
+
+    def __gt__(self, my_time) -> bool:
+        if self.hours > my_time.hours or (self.hours == my_time.hours and self.minutes > my_time.minutes)\
+                or (self.hours == my_time.hours and self.minutes == my_time.minutes
+                    and self.seconds > my_time.seconds):
+            print('Да время больше')
+            return True
+        else:
+            print('Нет время не бильше')
+            return False
+
+    def __add__(self, my_time):
+        self.hours += my_time.hours
+        self.minutes += my_time.minutes
+        self.seconds += my_time.seconds
+        self.check_time()
+        return self
+
+    def __mul__(self, n: int = 1):
+        self.hours *= n
+        self.minutes *= n
+        self.seconds *= n
+        self.check_time()
+        return self
+
+    def __sub__(self, my_time):
+        self.hours -= my_time.hours
+        self.minutes -= my_time.minutes
+        self.seconds -= my_time.seconds
+        self.check_time()
+        return self
 
 
 a = MyTime(time_str='12:32:05')
-b = MyTime(h=15, m=24, s=75)
+b = MyTime(h=12, m=32, s=6)
 c = MyTime(1, 0, 3)
-
+d = MyTime(my_time=a)
 print(a.hours, a.minutes, a.seconds)
 print(b.hours, b.minutes, b.seconds)
 print(c.hours, c.minutes, c.seconds)
 print(c.show_time())
 print(c.hours, c.minutes, c.seconds)
 print(a.show_time())
+print(d.hours)
 
-a.__eq__('12:32:04')
-a == '12:32:05'
-a != '12:36:05'
+print(a == c)
+print(a != d)
+print(a >= b)
+print(a <= b)
+print(a < b)
+print(a > b)
+print((a + b).show_time())
+print((a*2).show_time())
+print((a-b).show_time())
 
-
-'''elif self.hours > other_hours \
-     or (self.hours == other_hours and self.minutes > other_minutes) \
-     or (self.hours == other_hours and self.minutes == other_minutes and self.seconds > other_seconds):
-print('Время больше')'''
