@@ -12,7 +12,7 @@ def main():
         operation = int(input('Выберете операцию: '))
         if operation == 0:
             break
-        if operation in (0, 1, 2, 3, 4):
+        if operation in (1, 2, 3, 4):
             try:
                 n = int(input('Введите первое число: '))
             except ValueError as err:
