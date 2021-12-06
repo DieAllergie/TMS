@@ -1,3 +1,7 @@
 05/12/21 22:11:37 - Ivanov,25 min, pause 5 min, Sleep on work 
 05/12/21 22:12:12 - Ivanov, 25 min, pause 5 min, Sleep on work 
 05/12/21 22:21:21 - Ivanov, 25 min, pause 5 min, 4 cycles, Sleep on work 
+06/12/21 12:15:49 - Petrov, 2 min, pause 1 min, 2 cycles, Test wiht sleep and cycles 
+06/12/21 12:21:06 - Petrov, 2 min, pause 1 min, 2 cycles, Test wiht sleep and cycles 
+06/12/21 12:24:34 - Petrov, 2 min, pause 1 min, 2 cycles, Test wiht sleep and cycles 
+06/12/21 12:34:31 - Petrov, 2 min, pause 1 min, 2 cycles, Test wiht sleep and cycles 
