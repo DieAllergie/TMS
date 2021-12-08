@@ -69,16 +69,12 @@ apple = Products('apple', 20, 10, 'apple from village')
 milk = Products('milk', 20, 10, 'apple from village')
 
 
-#update_on_id(7)
-#del_from_base(2)
-show_table()
-#add_to_base(apple)
-session.close()
-'''
 def main():
-    pass
+    # update_on_id(7)
+    # del_from_base(2)
+    show_table()
+    # add_to_base(apple)
 
 
 if __name__ == '__main__':
     main()
-'''
