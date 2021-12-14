@@ -7,7 +7,7 @@ from sqlalchemy.sql.schema import ForeignKey
 
 
 DB_USER = 'postgres'
-DB_PASSWORD = 'powerpost1404'
+DB_PASSWORD = '*********'
 DB_NAME = 'test'
 
 engine = create_engine(f'postgresql://{DB_USER}:{DB_PASSWORD}@localhost/{DB_NAME}', echo=True)
